@@ -9,20 +9,14 @@ const addText = function() {
   if (x > 0) {   
     x -= 1;  
     timer.textContent = "00:" + "00:" + x;
-  } 
+  } else {
+    clearInterval(intervalID);
+    alert ('Вы победили в конкурсе!')
+    link.click();
+    
+    
+  }
 
 }
     
-setInterval(addText, 1000)
-
-const showGreeting = () => {
-
-  alert ('Вы победили в конкурсе!')
-  link.click();
-}
-
-setTimeout(showGreeting, (x + 1) * 1000);
-
-
-
-
+let intervalID = setInterval(addText, 1000)
