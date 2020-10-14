@@ -1,9 +1,12 @@
 'use strict'
 const sliderItems = document.getElementsByClassName('slider__item');
+const arrSlides = Array.from(sliderItems);
 
 const sliderArrow = document.getElementsByClassName('slider__arrow');
 
 const sliderDots = document.getElementsByClassName('slider__dot');
+const arrDots = Array.from(sliderDots);
+
 
 let slideIndex = 1;
 
@@ -17,17 +20,14 @@ function showSlides(n) {
         slideIndex = sliderItems.length
     } 
 
-    for (let slide of sliderItems) {
-        slide.className = "slider__item";
-    }
-
-    sliderItems[slideIndex - 1].className = "slider__item slider__item_active";    
-
-    for (let dot of sliderDots) {
-        dot.className = "slider__dot";
-    }
-
-    sliderDots[slideIndex - 1].className = "slider__dot slider__dot_active";   
+    let active = arrSlides.findIndex(item => item.classList.contains("slider__item_active"));
+    
+    arrSlides[slideIndex - 1].classList.toggle("slider__item_active"); 
+    arrSlides[active].classList.toggle("slider__item_active");   
+    
+    arrDots[slideIndex - 1].classList.toggle("slider__dot_active"); 
+    arrDots[active].classList.remove("slider__dot_active"); 
+ 
 }
 
 
@@ -45,10 +45,20 @@ sliderArrow[1].onclick = function() {
 } 
 
 
-for (let dot of sliderDots) {
+ for (let i = 0; i < sliderDots.length; i++) {
     
-    dot.onclick = function() { 
+     sliderDots[i].onclick = function() { 
 
-    showSlides(slideIndex += 1);  
-    } 
-} 
+        sliderDots[i].classList.toggle("slider__dot_active"); 
+
+        let activeSlide = arrSlides.findIndex(item => item.classList.contains("slider__item_active"));
+        
+        arrSlides[activeSlide].classList.toggle("slider__item_active");  
+
+        arrSlides[i].classList.toggle("slider__item_active"); 
+        
+        arrDots[activeSlide].classList.remove("slider__dot_active"); 
+   
+
+     } 
+ } 
