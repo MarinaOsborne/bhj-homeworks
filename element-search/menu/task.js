@@ -7,7 +7,7 @@ for (let i = 0; i < arr.length; i++) {
     
     menuLink[i].onclick = function() { 
         
-       menuLink[i].nextElementSibling.className = "menu menu_sub menu_active"; 
+       menuLink[i].nextElementSibling.classList.toggle("menu_active"); 
       
       return false;
     }  
