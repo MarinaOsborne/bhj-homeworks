@@ -1,3 +1,4 @@
+'use strict'
 class Game {
   constructor(container) {
     this.container = container;
@@ -17,14 +18,18 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+    document.addEventListener("keydown", (event) => {
+      let symb = this.currentSymbol.textContent.toLowerCase()
+      let keySumb = event.key.toLowerCase(); 
+
+      if (symb === keySumb) {
+        this.success();
+      } else {
+        this.fail();
+      }
+    });
   }
+
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
