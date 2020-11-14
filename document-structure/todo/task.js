@@ -4,11 +4,15 @@ const button = document.getElementById('tasks__add');
 const text = document.getElementById('task__input');
 const tasksList = document.getElementById('tasks__list'); 
 
-form.addEventListener('keypress', event => { 
+button.addEventListener('click', addTask);
+form.addEventListener('keypress', addOnEnter);
 
-    if (event.code == "Enter" && text.value != "") {
 
-      tasksList.insertAdjacentHTML('afterend',  `<div class="task">
+function addTask (event) { 
+
+    if (text.value.trim() != "") {
+
+      tasksList.insertAdjacentHTML('afterbegin',  `<div class="task">
                                                  <div class="task__title">
                                                  ${text.value}
                                                  </div>
@@ -16,18 +20,22 @@ form.addEventListener('keypress', event => {
                                                  </div>`) 
    
 
-    let crosses = document.getElementsByClassName('task__remove') 
+    let cross = tasksList.getElementsByClassName('task__remove')[0] 
 
-    for (let cross of crosses) {
+    cross.addEventListener('click', event => { 
 
-      cross.addEventListener('click', event => { 
         if (cross = event.target)
-        cross.parentElement.remove()
+         cross.parentElement.remove()  
 
-     })
-    }
-
+    })
+    
+    text.value = "";
     event.preventDefault();    
-}
+    }
+};
 
-});
+function addOnEnter (event) { 
+
+    if (event.code == "Enter" || event.code == "NumpadEnter") addTask (event)
+};
+
