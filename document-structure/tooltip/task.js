@@ -11,8 +11,8 @@ tooltip.addEventListener('click', function (e) {
      tip.contains(document.querySelector('.tooltip_active')) && document.querySelector('.tooltip_active').innerText == e.target.title ? 
      tip.classList.remove('tooltip_active') : tip.classList.add('tooltip_active');
     
-     tip.style.top = this.style.top;
-     tip.style.left = `${this.getBoundingClientRect().left}px`;
+     tip.style.top = e.target.getBoundingClientRect().top + 20 + 'px';
+     tip.style.left = e.target.getBoundingClientRect().left + 'px';
      tip.innerText = e.target.title;
     
      e.preventDefault();
