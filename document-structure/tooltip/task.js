@@ -1,33 +1,20 @@
  `use strict`
 
-const tooltips = [...document.querySelectorAll('.has-tooltip')];
-let active;
+let tooltips = [...document.querySelectorAll('.has-tooltip')];
+let tip = document.createElement('div');
+tip.classList.add('tooltip');
 
+for (let tooltip of tooltips)
+tooltip.addEventListener('click', function (e) {
 
-function showTip(elem) {
-  
-  if (active = document.querySelector('.tooltip')) {
-    if (active === elem.nextElementSibling) {
-      active.remove();
-      return;
-    } else 
-    active.remove();
-  }
-
-
-  let tipText = elem.getAttribute('title');
-  elem.insertAdjacentHTML("afterEnd", `<div class="tooltip" style="left: 0; top: 0">${tipText}</div>`);
-  active = document.querySelector('.tooltip');
-  active.style.display = 'block';
-  active.style.left = elem.getBoundingClientRect().left + 'px';
-  active.style.top = elem.getBoundingClientRect().bottom + 'px'
-  
-}
-
-tooltips.forEach(item => {
-  item.addEventListener('click', e =>{
-    e.preventDefault();
-    showTip(item);
-  });
-});
+     tooltip.appendChild(tip);
+     tip.contains(document.querySelector('.tooltip_active')) && document.querySelector('.tooltip_active').innerText == e.target.title ? 
+     tip.classList.remove('tooltip_active') : tip.classList.add('tooltip_active');
+    
+     tip.style.top = this.style.top;
+     tip.style.left = `${this.getBoundingClientRect().left}px`;
+     tip.innerText = e.target.title;
+    
+     e.preventDefault();
+})
 
