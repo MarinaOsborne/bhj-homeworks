@@ -51,7 +51,7 @@ for (let product of products) {
           <div class="cart__product-count">${quantity.innerText}</div>
       </div>`  } else if (findCart && event.target.classList.contains("product__add")) {
 
-        findCart.lastElementChild.textContent = +findCart.lastElementChild.textContent + 1 
+        findCart.lastElementChild.textContent = +findCart.lastElementChild.textContent + Number(quantity.innerText)
     }
 
   })
